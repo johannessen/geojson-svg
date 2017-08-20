@@ -1,0 +1,17 @@
+√ write code to project Blatteinteilung onto an SVG sheet:
+  √ read JSON and project
+  √ write SVG
+  √ parse CRS from GeoJSON
+√ write code to de-project an SVG sheet to geojson:
+  √ parse lines from SVG
+  √ de-project lines
+  √ write lines to geojson
+  √ extend to support rect+line
+  √ parse CRS from SVG
+  - extend to support paths (low priority)
+  - extend to support transformations (low priority)
+√ extend to support point features (for soundings)
+- CLI
+- extend to support compound paths <=> hole polygons / MultiLineStrings (low priority)
+
+SVG is pretty complex. Might be better to try and use an existing rendering lib after all and work off of the drawing coordinates produced by that. (low priority)

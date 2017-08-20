@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_5" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="2897.008px" height="2897.008px" viewBox="0 0 2897.008 2897.008" enable-background="new 0 0 2897.008 2897.008"
+	 xml:space="preserve">
+<metadata>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:crs="http://www.ogc.org/crs" xmlns:svg="http://www.w3.org/2000/svg">
+<rdf:Description>
+<crs:CoordinateReferenceSystem svg:transform="scale(1,-1)" rdf:resource="data:,+proj=merc%20+lat_ts=51%20+ellps=WGS84%20+datum=WGS84%20+to_meter=2%20+x_0=-529516%20+y_0=-4163806%20+no_defs"/>
+</rdf:Description>
+</rdf:RDF>
+</metadata>
+<polyline id="bounds" fill="none" stroke="#FF0000" stroke-width="28.3465" stroke-miterlimit="10" points="0,0 2897.008,0 
+	2897.008,2897.008 0,2897.008 "/>
+<path id="p0" fill="#E1DFD8" stroke="#2F2D2C" stroke-miterlimit="10" d="M360.25,441.497l296.875-265.622l162.5,334.372
+	L629,725.874l68.75,356.25L854,1197.749l415.625,31.25c0,0,75-268.75,84.375-271.875s206.25-134.375,218.75-131.25
+	s187.5-9.375,218.75,12.5s206.25,303.125,206.25,312.5s-3.125,115.625-3.125,125s-143.75,334.375-143.75,334.375
+	s-306.25,190.625-343.75,209.375s-312.5,96.875-365.625,96.875s-296.875-9.375-328.125-34.375s-300-196.875-315.625-281.25
+	s-46.875-250-46.875-287.5s53.125-159.375,56.25-168.75S504,891.499,497.75,878.999s-109.375-150-109.375-150L285.25,622.749
+	L360.25,441.497z"/>
+<rect id="rect" x="1825.875" y="438.372" fill="#E1DFD8" stroke="#2F2D2C" stroke-miterlimit="10" width="550" height="275.002"/>
+<path id="compound" fill="#E1DFD8" stroke="#2F2D2C" stroke-miterlimit="10" d="M2425.875,2607.124l-457.744,255.336l-450-268.75
+	l7.744-524.086l457.741-255.336l450.002,268.75L2425.875,2607.124z M1938.793,2427.93l206.25,3.125l105.832-177.056l-100.42-180.182
+	l-206.25-3.125l-105.83,177.057L1938.793,2427.93z"/>
+<polygon id="hexagon" fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" points="364.409,2704.81 239.814,2489.003 
+	364.409,2273.198 613.599,2273.198 738.195,2489.003 613.599,2704.81 "/>
+<line id="line" fill="none" stroke="#000000" stroke-miterlimit="10" x1="931.772" y1="874.766" x2="1591.838" y2="394.718"/>
+<circle id="circle" fill="none" stroke="#000000" stroke-miterlimit="10" cx="2353.914" cy="1399.819" r="135.014"/>
+<polygon id="p2" fill="#E1DFD8" stroke="#2F2D2C" stroke-miterlimit="10" points="1039.782,2095.889 850.764,2143.894 
+	919.771,2248.905 856.764,2323.911 1009.78,2386.918 1072.786,2299.909 1207.8,2290.908 1021.781,2197.899 1126.791,2107.89 "/>
+<polyline id="p1" fill="none" stroke="#2F2D2C" stroke-miterlimit="10" points="529.732,1930.872 625.741,2002.879 
+	493.728,2023.881 592.738,2080.887 481.727,2104.89 571.736,2155.895 "/>
+<circle fill="none" stroke="#2F2D2C" stroke-miterlimit="10" cx="488.787" cy="2489.009" r="214.48"/>
+</svg>
