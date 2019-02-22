@@ -36,7 +36,8 @@ Proj4 Projection Definition
 ---------------------------
 
 Pretty straight-forward for a new map: Simply define the projection as usual.
-Make sure you define the map scale. Finally, provide custom values for false
+Make sure you define the map scale using `+to_meter`. Avoid using `+units`,
+as it conflicts with `+to_meter`. Finally, provide custom values for false
 easting and false northing (in metres) such that the resulting map coordinates
 are directly usable as sheet coordinates in millimetres in the vector editor.
 This software automatically inverts the ordinal axis to fit the SVG coordinate
@@ -49,6 +50,14 @@ projected Mercator map (which is somewhere in western Germany).
 
 	+proj=merc +lat_ts=51 +to_meter=2
 	+x_0=-529516 +y_0=-4163806
+
+The `cs2cs` tool can help with determining the SVG coordinate origin.
+
+```sh
+echo 7.54322 51.08437 |
+cs2cs +proj=lonlat +to +proj=merc +lat_ts=51
+# output: 529516.53 4163806.12
+```
 
 Providing a Proj4 definition for an existing map is also possible. Other units
 such as points or pixels can also be used in principle, but have not really
