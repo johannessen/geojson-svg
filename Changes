@@ -1,12 +1,16 @@
-0.03, 2018-09-30
+0.04  2020-05-12
+
+ - tentatively rename project from Convert-GeoJSON_SVG to SVG-Geo
+
+0.03  2018-09-30
 
  - convert into a module
  - allow reuse under the terms of the Artistic License 2.0
 
-0.02, 2017-08-20
+0.02  2017-08-20
 
  - svg2json.pl and roundtrip support, including CRS
 
-0.01, 2017-08-07
+0.01  2017-08-07
 
  - json2svg.pl

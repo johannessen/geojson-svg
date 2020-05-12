@@ -1,5 +1,5 @@
-Convert::GeoJSON_SVG
-====================
+SVG::Geo
+========
 
 Creating a GeoPDF map with vector graphics editors requires exact positioning
 of the map contents with respect to the GeoPDF registration. A reliable way to
@@ -26,6 +26,17 @@ The module name is a work in progress. Options under consideration:
 - `Convert::GeoJSON_SVG`
 - `Geo::JSON::Convert::SVG`
 - `Geo::JSON::Render::SVG`
+- `Geo::SVG`
+- `SVG::Geo`
+
+Mentioning `JSON` is probably not smart, because the spatial data format
+should be interchangeable. Also, `Convert` prolly isn't great, see
+<https://www.cpan.org/modules/00modlist.long.html>. This leaves `Geo::SVG`
+and `SVG::Geo`, of which the latter is preferred, as SVG really is the focus
+here: What this module provides is a form of **geospatial SVG.** (While
+`Geo::SVG` has a nice ring to it, there is at least one unrelated project that
+goes by the name of `GeoSVG`. Probably best to not use a name that is too
+similar. Also, CPAN’s `SVG` namespace is currently less crowded than `Geo`.)
 
 [Proj4]: https://proj4.org/
 [GeoJSON]: http://geojson.org/geojson-spec.html
