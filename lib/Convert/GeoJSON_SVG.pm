@@ -13,7 +13,8 @@ use Geo::JSON::Feature;
 use Geo::JSON::FeatureCollection;
 #use Geo::JSON::LineString;
 #use Geo::JSON::Polygon;
-use Geo::Proj4 qw();
+use Geo::LibProj::cs2cs 1.02;
+use Geo::LibProj::FFI;
 use XML::LibXML qw();
 use URI;
 
@@ -80,7 +81,6 @@ sub json2svg {
 	my ($self, $json) = @_;
 	
 	my $svg_crs = $self->{svg_crs} or croak "required value 'svg_crs' undefined";
-	$self->{_svg_proj} = Geo::Proj4->new($svg_crs) or croak "libproj error: " . Geo::Proj4->error;
 	
 	$json = Geo::JSON->from_json($json) if ! ref $json;
 	my $json_crs = $self->{json_crs};
@@ -93,7 +93,7 @@ sub json2svg {
 		carp "Unable to parse GeoJSON CRS (only proj4 data: URIs are supported); falling back to defaults" if ! $json_crs;
 	}
 	$json_crs = $self->{json_default_crs} if ! $json_crs;
-	$self->{_json_proj} = Geo::Proj4->new($json_crs) or croak "libproj error: " . Geo::Proj4->error;
+	$self->{_cs2cs} = Geo::LibProj::cs2cs->new($json_crs => $svg_crs, {XS => 1});
 	
 	my $doc = $self->create_svg_document;
 	my $root = $doc->getDocumentElement;
@@ -276,8 +276,7 @@ sub svg2json {
 	}
 	$self->{_svg_units} = $svg_units;
 	$self->{_svg_scale} = [$svg_scale_x, $svg_scale_y];
-	$self->{_svg_proj} = Geo::Proj4->new($svg_crs) or croak "libproj error: " . Geo::Proj4->error;
-	$self->{_json_proj} = Geo::Proj4->new($json_crs) or croak "libproj error: " . Geo::Proj4->error;
+	$self->{_cs2cs} = Geo::LibProj::cs2cs->new($svg_crs => $json_crs, {XS => 1});
 	
 	print STDERR "Converting features\n" if $self->{verbose} >= 2;
 	my @bbox = undef;
@@ -373,7 +372,7 @@ sub point2svg {
 	my $scale_x = $self->{svg_units} * $self->{svg_scale_x};
 	my $scale_y = $self->{svg_units} * $self->{svg_scale_y};
 	
-	my $p = $self->{_json_proj}->transform($self->{_svg_proj}, $point);
+	my $p = $self->{_cs2cs}->transform($point);
 	my @p = ($p->[0] * $scale_x, $p->[1] * $scale_y);
 	return map {0 + sprintf "$self->{svg_number}", $_} @p;
 }
@@ -386,8 +385,8 @@ sub point2json {
 	my $scale_y = $self->{_svg_units} / $self->{_svg_scale}->[1];
 	
 	my @p = ($point->[0] * $scale_x, $point->[1] * $scale_y);
-	my $p = $self->{_svg_proj}->transform($self->{_json_proj}, [@p]);
-	return [ map {0 + sprintf "$self->{json_number}", $_} @$p ];
+	my $p = $self->{_cs2cs}->transform($point);
+	return [ map {0 + sprintf "$self->{json_number}", $_} @$p[0..1] ];
 }
 
 
