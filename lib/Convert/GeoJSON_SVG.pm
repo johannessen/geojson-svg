@@ -50,11 +50,12 @@ sub new {
 		sheet_width => 297,
 		sheet_height => 210,
 		svg_line_style => $svg_line_style,
-		svg_circle_radius => .5,  # in 1/2000, this equates to a diameter of 2 metres in the world, exactly
+		svg_circle_radius => .5,  # in 1/2000, radius .5 equates to a diameter of 2 metres in the world, exactly
 		element_types => {  # GeoJSON --> SVG
 			Polygon => "polygon",
 			MultiLineString => "polyline",
 			LineString => "polyline",
+			MultiPoint => "circle",
 			Point => "circle",
 		},
 		feature_types => {  # SVG --> GeoJSON
@@ -133,7 +134,7 @@ sub json2svg {
 				my @points = map { join ",", $self->point2svg($_) } @$line;
 				$element->setAttribute("points", join " ", @points);
 			}
-			elsif ($geometry_type eq "Point") {
+			elsif ($geometry_type =~ m/Point$/) {
 				my @point = $self->point2svg($line);
 				$element->setAttribute("cx", $point[0]);
 				$element->setAttribute("cy", $point[1]);
