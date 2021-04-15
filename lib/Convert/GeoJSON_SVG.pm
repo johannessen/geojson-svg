@@ -52,6 +52,7 @@ sub new {
 		svg_line_style => $svg_line_style,
 		svg_circle_radius => .5,  # in 1/2000, radius .5 equates to a diameter of 2 metres in the world, exactly
 		element_types => {  # GeoJSON --> SVG
+			MultiPolygon => "polygon",
 			Polygon => "polygon",
 			MultiLineString => "polyline",
 			LineString => "polyline",
@@ -126,11 +127,15 @@ sub json2svg {
 		my $coordinates = $feature->{geometry}->{coordinates};
 		$coordinates = [$coordinates] if $geometry_type eq "LineString" || $geometry_type eq "Point";
 #		$coordinates = [[$coordinates]] if $geometry_type eq "Point";
+		if ($geometry_type eq "MultiPolygon") {
+			die "MultiPolygon features are not implemented (except if they have exactly one polygon)" unless @$coordinates == 1;
+			$coordinates = $coordinates->[0];
+		}
 		foreach my $line ( @$coordinates ) {
 			my $element = $group->addChild($doc->createElement($element_type));
 			
 			if ($element_type eq "polyline" || $element_type eq "polygon") {
-				pop @$line if $geometry_type eq "Polygon";  # we should probably confirm if the first and last points really are the same
+				pop @$line if $geometry_type =~ m/Polygon$/;  # we should probably confirm if the first and last points really are the same
 				my @points = map { join ",", $self->point2svg($_) } @$line;
 				$element->setAttribute("points", join " ", @points);
 			}
